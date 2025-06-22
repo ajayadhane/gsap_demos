@@ -1,0 +1,20 @@
+.box-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    padding: 40px;
+    background-color: #0f172a;
+    min-height: 100vh;
+}
+
+.box {
+    background: #1e293b;
+    padding: 40px 20px;
+    border-radius: 16px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+}
