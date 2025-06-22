@@ -1,12 +1,12 @@
 import "./commamStyle.css";
-import BoxAnimations from "./components/BoxAnimations";
-import Counter from "./components/Counter";
-import LandingPage from "./components/LandingPage";
+import MyCards from "./components/MyCards";
+import SplitTextDemo from "./components/SplitTextDemo";
 function App() {
   return (
     <div className="container-style">
-      {/* <Counter /> */}
-      <BoxAnimations />
+      {/* <SplitTextDemo /> */}
+
+      <MyCards />
     </div>
   );
 }
