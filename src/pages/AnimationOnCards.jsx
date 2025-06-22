@@ -1,27 +1,45 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export default function MyCards() {
+export default function AnimationOnCards() {
   const containerRef = useRef(null);
 
-  // Dummy card data
   const cards = Array.from({ length: 6 }, (_, i) => ({
     title: `Card Title ${i + 1}`,
     text: `This is card number ${
       i + 1
-    }. It contains some example text that serves as a placeholder for longer paragraph content, simulating real-world usage scenarios for better design visibility.`,
+    }. It contains some example text that serves as a placeholder for longer paragraph content.`,
   }));
 
-  // GSAP animation on mount
   useEffect(() => {
-    gsap.set(".stagger .box", { y: 50, opacity: 0 });
+    const titleEls = document.querySelectorAll(".card-title");
 
-    gsap.to(".stagger .box", {
-      y: 0,
+    titleEls.forEach((titleEl) => {
+      const chars = titleEl.textContent.split("");
+      titleEl.innerHTML = chars
+        .map((char) => `<span class="char">${char}</span>`)
+        .join("");
+    });
+
+    // ✨ Try different animation styles by changing this block
+    gsap.set(".char", { opacity: 0, rotateY: -90 });
+    gsap.to(".char", {
       opacity: 1,
-      duration: 1,
+      rotateY: 0,
+      duration: 0.7,
+      stagger: 0.03,
+      ease: "power2.out",
+      delay: 0.3,
+    });
+
+    // Animate cards (scale in)
+    gsap.set(".stagger .box", { opacity: 0, scale: 0.9 });
+    gsap.to(".stagger .box", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
       stagger: 0.2,
-      ease: "back.out(1.7)",
+      ease: "back.out(1.5)",
     });
   }, []);
 
@@ -30,7 +48,11 @@ export default function MyCards() {
       className="container d-flex flex-column justify-content-center"
       style={{ minHeight: "100vh" }}
     >
-      <div className="row stagger">
+      <h2 className="text-center text-light fw-bold mb-5 display-5">
+        I'm Ajay Adhane
+      </h2>
+
+      <div className="row stagger" ref={containerRef}>
         {cards.map((card, index) => (
           <div className="col-md-4 mb-4 box" key={index}>
             <div className="card text-white bg-dark h-100 shadow">
